@@ -2,7 +2,7 @@
   "name": "githelperapp",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3535/api",
+  "proxy": "http://localhost:3535",
   "main": "server/server.js",
   "dependencies": {
     "axios": "^0.18.0",
