@@ -11,8 +11,10 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.login}>Click me to login</button>
+      <div style={{display: 'flex', justifyContent: "center"}}>
+        <div>
+          <button onClick={this.login}>Click me to login</button>
+        </div>
       </div>
     );
   }

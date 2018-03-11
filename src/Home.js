@@ -34,7 +34,7 @@ export default class Home extends Component {
 
   getAuthToken(){
     console.log(this.state.code)
-    axios.post('http://localhost:3535/api/tokengetter', {code: this.state.code})
+    axios.post('/api/tokengetter', {code: this.state.code})
       .then(response => {
         console.log(response.data)
         this.setUser(response.data)
@@ -92,26 +92,29 @@ export default class Home extends Component {
     })
 
     return(
-      <div style={{display: 'flex', justifyContent: "space-around"}}>
+      <div style={{display: 'flex', justifyContent: "space-between", padding: "30px"}}>
         <div>
-          Here are your repos{this.state.user ? ` ${this.state.user.login}` : null}!
+          <p>Here are your repos{this.state.user ? ` ${this.state.user.login}` : null}!</p>
+          <p>Click on one to see some more information about it!</p>
           <ul>
             {repos}
           </ul>
         </div>
-        {this.state.selectedRepo ? (
         <div>
-          Here is who contributed to {this.state.selectedRepo.repo}!
-          <ul>
-            {this.state.selectedRepo.contributors.map( e =>  <li> {e.login}</li>)}
-          </ul>
-          Here is what {this.state.selectedRepo.repo} is all about!
-          <ul>
-            <li> Description: {this.state.selectedRepo.description ? this.state.selectedRepo.description : "No description provided"}</li>
-            <li> Language: {this.state.selectedRepo.language ? this.state.selectedRepo.language : "No language provided"}</li>
-            <li> Stars: {this.state.selectedRepo.stars ? this.state.selectedRepo.stars : "0"}</li>
-          </ul>
-        </div>) : null }
+          {this.state.selectedRepo ? (
+          <div>
+            Here is who contributed to {this.state.selectedRepo.repo}!
+            <ul>
+              {this.state.selectedRepo.contributors.map( e =>  <li> {e.login}</li>)}
+            </ul>
+            Here is what {this.state.selectedRepo.repo} is all about!
+            <ul>
+              <li> Description: {this.state.selectedRepo.description ? this.state.selectedRepo.description : "No description provided"}</li>
+              <li> Language: {this.state.selectedRepo.language ? this.state.selectedRepo.language : "No language provided"}</li>
+              <li> Stars: {this.state.selectedRepo.stars ? this.state.selectedRepo.stars : "0"}</li>
+            </ul>
+          </div>) : null }
+        </div>
       </div>
     )
   }
